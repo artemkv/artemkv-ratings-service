@@ -12,6 +12,7 @@ const version = require('./myversion');
 const myRatingController = require('./myratingcontroller');
 const ratingController = require('./ratingcontroller');
 const bookController = require('./bookController');
+const booksController = require('./booksController');
 const commitLog = require('./commitlog');
 const queue = require('./queue');
 const memData = require('./memdata');
@@ -49,6 +50,7 @@ server
     .use('/rating', ratingController.postRating)
     .use('/myrating', myRatingController.getMyRating)
     .use('/book', bookController.getBook)
+    .use('/books', booksController.getBooks)
 
     // Handles errors
     .use(function (err, req, res, next) {
