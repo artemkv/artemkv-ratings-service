@@ -9,7 +9,8 @@ const myRequest = require('@artemkv/myrequest');
 const health = require('@artemkv/health');
 const logger = require('@artemkv/logger');
 const version = require('./myversion');
-const eventController = require('./eventcontroller');
+const myRatingController = require('./myratingcontroller');
+const ratingController = require('./ratingcontroller');
 const commitLog = require('./commitlog');
 const queue = require('./queue');
 const memData = require('./memdata');
@@ -44,7 +45,8 @@ server
     .use('/stats', restStats.getStats)
 
     // Do business
-    .use('/event', eventController.postEvent)
+    .use('/rating', ratingController.postRating)
+    .use('/myrating', myRatingController.getMyRating)
 
     // Handles errors
     .use(function (err, req, res, next) {
