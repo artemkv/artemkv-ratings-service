@@ -11,6 +11,7 @@ const logger = require('@artemkv/logger');
 const version = require('./myversion');
 const myRatingController = require('./myratingcontroller');
 const ratingController = require('./ratingcontroller');
+const bookController = require('./bookController');
 const commitLog = require('./commitlog');
 const queue = require('./queue');
 const memData = require('./memdata');
@@ -47,6 +48,7 @@ server
     // Do business
     .use('/rating', ratingController.postRating)
     .use('/myrating', myRatingController.getMyRating)
+    .use('/book', bookController.getBook)
 
     // Handles errors
     .use(function (err, req, res, next) {

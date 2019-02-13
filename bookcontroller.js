@@ -6,19 +6,9 @@ const RestError = require('@artemkv/resterror');
 const restStats = require('@artemkv/reststats');
 const ratingMemData = require('./ratingsmemdata');
 
-const getMyRating = function (req, res, next) {
+const getBook = function (req, res, next) {
     if (req.method !== 'GET') {
         throw new RestError(statusCodes.MethodNotAllowed, statusMessages.MethodNotAllowed);
-    }
-
-    let userId = req.my.query.uid;
-    if (userId) {
-        if (typeof userId !== 'string') {
-            throw new RestError(statusCodes.BadRequest, statusMessages.BadRequest);
-        }
-        validateUserId(userId);
-    } else {
-        throw new RestError(statusCodes.BadRequest, statusMessages.BadRequest);
     }
 
     let bookId = req.my.query.id;
@@ -31,21 +21,17 @@ const getMyRating = function (req, res, next) {
         throw new RestError(statusCodes.BadRequest, statusMessages.BadRequest);
     }
 
-    let rating = { id: bookId, r: ratingMemData.getUserRating(userId, bookId) };
-    let response = JSON.stringify(rating);
+    let book = { id: bookId, ar: ratingMemData.getAverageRating(bookId) };
+    let response = JSON.stringify(book);
 
     res.statusCode = statusCodes.OK;
     res.setHeader("Content-Type", "application/json; charset=utf-8");
-    res.setHeader('Cache-Control', 'no-store');
+    res.setHeader('Cache-Control', 'public, max-age=120');
     res.write(response);
     res.end();
 
-    restStats.countRequestByEndpoint("myrating");
+    restStats.countRequestByEndpoint("book");
     restStats.updateResponseStats(req, res);
-}
-
-function validateUserId(userId) {
-    // TODO: implement
 }
 
 function validateBookId(bookId) {
@@ -56,4 +42,4 @@ function validateBookId(bookId) {
     return bookIdParsed;
 }
 
-exports.getMyRating = getMyRating;
+exports.getBook = getBook;
