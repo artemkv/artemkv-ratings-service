@@ -16,8 +16,9 @@ function replicate() {
     if (envelope) {
         console.log('replicating message ' + JSON.stringify(envelope)); // TODO: debug code
 
+        // TODO: path is hardcoded
         let options = {
-            url: `${PEER_URL}/event?replica=true`,
+            url: `${PEER_URL}/rating?replica=true`,
             headers: {
                 'Content-Type': 'application/json'
             },
