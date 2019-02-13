@@ -1,0 +1,36 @@
+{
+  "name": "artemkv.services.ratings",
+  "version": "1.0.0",
+  "description": "Ratings Service",
+  "main": "app.js",
+  "author": {
+    "name": "artemkv",
+    "email": "artemkv@gmail.com"
+  },
+  "dependencies": {
+    "connect": "3.6.6",
+    "serve-favicon": "2.5.0",
+    "@artemkv/statuscodes": "1.0.2",
+    "@artemkv/statusmessages": "1.0.0",
+    "@artemkv/resterror": "1.0.0",
+    "@artemkv/reststats": "1.0.0",
+    "@artemkv/errorhandler": "1.0.1",
+    "@artemkv/myrequest": "1.1.1",
+    "@artemkv/datetimeutil": "1.0.0",
+    "@artemkv/readjsonstream": "1.0.0",
+    "@artemkv/health": "1.0.0",
+    "@artemkv/logger": "1.0.1",
+    "dotenv": "^6.2.0",
+    "request": "2.88.0"
+  },
+  "devDependencies": {
+    "mocha": "5.2.0",
+    "chai": "4.1.1",
+    "request": "2.88.0",
+    "wait-on": "^3.2.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "integration-test": "wait-on http://localhost:8100/stats && mocha integration-test"
+  }
+}

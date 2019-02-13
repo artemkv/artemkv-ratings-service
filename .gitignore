@@ -1,0 +1,6 @@
+.env
+
+node_modules/
+commit_log/
+queue/
+log/
