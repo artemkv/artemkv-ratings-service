@@ -12,6 +12,8 @@ const version = require('./myversion');
 const eventController = require('./eventcontroller');
 const commitLog = require('./commitlog');
 const queue = require('./queue');
+const memData = require('./memdata');
+const ratingMemData = require('./ratingsmemdata');
 
 dotenv.config();
 
@@ -65,6 +67,9 @@ server.listen(port, ip, function () {
     logger.log('Application started: http://' + ip + ":" + port + '/');
 
     restStats.initialize(version);
+
+    memData.initialize(ratingMemData.ingestEvent);
+
     let numberToReEnqueue = queue.initialize();
     commitLog.initialize(numberToReEnqueue);
 });

@@ -1,10 +1,14 @@
 "use strict";
 
-// TODO: for now, a simple list, store it the way that is optimal for querying
-let _events = [];
+let _ingestEvent;
 
-const addEvent = function (event) {
-    _events.push(event);
+const initialize = function initialize(ingestEvent) {
+    _ingestEvent = ingestEvent;
 }
 
+const addEvent = function (event) {
+    _ingestEvent(event);
+}
+
+exports.initialize = initialize;
 exports.addEvent = addEvent;

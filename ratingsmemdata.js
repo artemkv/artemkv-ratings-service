@@ -57,6 +57,11 @@ const getUserRating = function (userId, bookId) {
     return rating;
 }
 
+const ingestEvent = function ingestEvent(event) {
+    updateUserRating(event.uid, event.id, event.r);
+}
+
 exports.updateUserRating = updateUserRating;
 exports.getUserRating = getUserRating;
 exports.getAverageRating = getAverageRating;
+exports.ingestEvent = ingestEvent;
