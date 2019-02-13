@@ -1,0 +1,9 @@
+[Unit]
+Description=Rating Service
+
+[Service]
+Type=forking
+ExecStart=/home/ubuntu/prod/artemkv-ratings-service/start/start-service.sh
+
+[Install]
+WantedBy=multi-user.target
